@@ -19,11 +19,11 @@ items <- parsed.data$items
 most.popular.forks <- items[1, 'forks']
 
 # How many public repositories does our course organization have?
-base.uri <- 'https://api.github.com/search/repositories'
-query.params <- list(q = "d3", sort = "forks", order = "desc")
+base.uri <- 'https://api.github.com/orgs/info201a-au17/repos'
+query.params <- list(type = "public")
 response <- GET(base.uri, query = query.params)
 body <- content(response, "text")
 parsed.data <- fromJSON(body)
 
-items <- parsed.data$items
-num.repo <-
+items2 <- fromJSON(parsed.data)
+num.repos <- nrow(items2)
